@@ -6,7 +6,18 @@ exports.createTask = async(req,res) => {
         const newTask = await Task.create(tarefa);
         res.status(201).json(newTask);
     }
-    catch{
-        res.status(500).json({erro: console.error.message})
+    catch(error){
+        res.status(500).json({erro:error.message})
     }
 };
+
+
+exports.getAllTasks = async(req,res) => {
+    try{
+        const tasks = await Task.findAll();
+        res.json(tasks);
+    }
+    catch(error){
+        res.status(500).json({erro : error.message});
+    }
+}

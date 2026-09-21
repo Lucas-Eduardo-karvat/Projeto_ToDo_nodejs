@@ -12,6 +12,12 @@ const taskModel = {
     create : async (tarefa) =>{
     const [result] = await db.query('INSERT INTO tasks (tarefa) VALUES (?)', [tarefa]);
     return new Task(result.insertId, tarefa,false);
+    },
+
+    // lista as tarefas cadastradas
+    findAll : async()=>{
+        const [rows] = await db.query('select * from tasks');
+        return rows.map(row=> new Task(row.id,row.tarefa,row.realizada))
     }
 };
 
