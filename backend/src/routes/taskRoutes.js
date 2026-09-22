@@ -6,4 +6,6 @@ router.post('/tasks',taskController.createTask);
 
 router.get('/tasks', taskController.getAllTasks)
 
+router.put('/tasks/:id', taskController.updateTask)
+
 module.exports = router;

@@ -18,6 +18,12 @@ const taskModel = {
     findAll : async()=>{
         const [rows] = await db.query('select * from tasks');
         return rows.map(row=> new Task(row.id,row.tarefa,row.realizada))
+    },
+
+
+    update : async(id,tarefa,realizada) =>{
+        await db.query('UPDATE tasks set tarefa=?, realizada=? WHERE id=?',[tarefa,realizada,id]);
+        return new Task(id,tarefa,realizada);
     }
 };
 

@@ -21,3 +21,15 @@ exports.getAllTasks = async(req,res) => {
         res.status(500).json({erro : error.message});
     }
 }
+
+exports.updateTask = async (req,res) =>{
+    try{
+        const {id} = req.params;
+        const {tarefa,realizada} = req.body
+        const updated = await Task.update(id,tarefa,realizada);
+        res.json(updated);
+    }
+    catch(error){
+        res.status(500).json({erro : error.message})
+    }
+}
